@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="0.4" y2="1">
+    <stop offset="0" stop-color="#FBFCFD"/><stop offset="1" stop-color="#E9ECF2"/>
+  </linearGradient>
+  <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#2563EB" stop-opacity="0.10"/>
+    <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#4B82F7"/><stop offset="1" stop-color="#2563EB"/>
+  </linearGradient>
+  <linearGradient id="glass" x1="0" y1="0" x2="0.3" y2="1">
+    <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.95"/>
+    <stop offset="1" stop-color="#DDE3ED" stop-opacity="0.85"/>
+  </linearGradient>
+  <filter id="sh" x="-40%" y="-40%" width="180%" height="180%">
+    <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#141C2E" flood-opacity="0.11"/>
+  </filter>
+  <filter id="shs" x="-60%" y="-60%" width="220%" height="220%">
+    <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#141C2E" flood-opacity="0.10"/>
+  </filter>
+  <filter id="blur"><feGaussianBlur stdDeviation="18"/></filter>
+</defs><rect width="1200" height="630" fill="url(#bg)"/><circle cx="600" cy="322" r="420" fill="url(#glow)"/><ellipse cx="600.0" cy="522.0" rx="260.0" ry="41.6" fill="#8A93A6" opacity="0.13" filter="url(#blur)"/><ellipse cx="600" cy="442" rx="330" ry="118" fill="#E6EEFE" opacity="0.55"/><ellipse cx="600" cy="442" rx="330" ry="118" fill="none" stroke="#7BA0F2" stroke-width="4" stroke-dasharray="14 18" opacity="0.8"/><ellipse cx="600" cy="442" rx="190" ry="66" fill="#C9DAFB"/><rect x="258.6" y="326.8" width="98.8" height="91.2" rx="13.0" fill="#FFFFFF" filter="url(#shs)"/><rect x="258.6" y="326.8" width="98.8" height="19.0" rx="13.0" fill="#E1E5EC" /><rect x="258.6" y="340.1" width="98.8" height="7.6" rx="0.0" fill="#E1E5EC" /><rect x="280.3" y="372.4" width="55.3" height="36.5" rx="6.0" fill="#EFF1F5" /><rect x="822.0" y="322.0" width="104.0" height="96.0" rx="13.0" fill="#FFFFFF" filter="url(#shs)"/><rect x="822.0" y="322.0" width="104.0" height="20.0" rx="13.0" fill="#E1E5EC" /><rect x="822.0" y="336.0" width="104.0" height="8.0" rx="0.0" fill="#E1E5EC" /><rect x="844.9" y="370.0" width="58.2" height="38.4" rx="6.0" fill="#EFF1F5" /><rect x="390.6" y="348.9" width="74.9" height="69.1" rx="13.0" fill="#FFFFFF" filter="url(#shs)"/><rect x="390.6" y="348.9" width="74.9" height="14.4" rx="13.0" fill="#E1E5EC" /><rect x="390.6" y="359.0" width="74.9" height="5.8" rx="0.0" fill="#E1E5EC" /><rect x="407.0" y="383.4" width="41.9" height="27.6" rx="6.0" fill="#EFF1F5" /><rect x="722.5" y="345.0" width="79.0" height="73.0" rx="13.0" fill="#FFFFFF" filter="url(#shs)"/><rect x="722.5" y="345.0" width="79.0" height="15.2" rx="13.0" fill="#E1E5EC" /><rect x="722.5" y="355.7" width="79.0" height="6.1" rx="0.0" fill="#E1E5EC" /><rect x="739.9" y="381.5" width="44.3" height="29.2" rx="6.0" fill="#EFF1F5" /><path d="M 600 406 C 568 336 516 304 516 250 A 84 84 0 1 1 684 250 C 684 304 632 336 600 406 Z" fill="url(#blueGrad)" filter="url(#sh)"/><circle cx="600.0" cy="250.0" r="34.0" fill="#FFFFFF" /></svg>

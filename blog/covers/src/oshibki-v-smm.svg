@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="0.4" y2="1">
+    <stop offset="0" stop-color="#FBFCFD"/><stop offset="1" stop-color="#E9ECF2"/>
+  </linearGradient>
+  <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#2563EB" stop-opacity="0.10"/>
+    <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#4B82F7"/><stop offset="1" stop-color="#2563EB"/>
+  </linearGradient>
+  <linearGradient id="glass" x1="0" y1="0" x2="0.3" y2="1">
+    <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.95"/>
+    <stop offset="1" stop-color="#DDE3ED" stop-opacity="0.85"/>
+  </linearGradient>
+  <filter id="sh" x="-40%" y="-40%" width="180%" height="180%">
+    <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#141C2E" flood-opacity="0.11"/>
+  </filter>
+  <filter id="shs" x="-60%" y="-60%" width="220%" height="220%">
+    <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#141C2E" flood-opacity="0.10"/>
+  </filter>
+  <filter id="blur"><feGaussianBlur stdDeviation="18"/></filter>
+</defs><rect width="1200" height="630" fill="url(#bg)"/><circle cx="600" cy="322" r="420" fill="url(#glow)"/><ellipse cx="600.0" cy="530.0" rx="210.0" ry="33.6" fill="#8A93A6" opacity="0.13" filter="url(#blur)"/><rect x="438.0" y="472.0" width="300.0" height="62.0" rx="16.0" fill="#FFFFFF" filter="url(#shs)"/><rect x="466.0" y="496.0" width="150.0" height="14.0" rx="7.0" fill="#E1E5EC" /><rect x="444.0" y="398.0" width="300.0" height="62.0" rx="16.0" fill="#FFFFFF" filter="url(#shs)"/><rect x="472.0" y="422.0" width="134.0" height="14.0" rx="7.0" fill="#E1E5EC" /><rect x="580.0" y="324.0" width="300.0" height="62.0" rx="16.0" fill="url(#blueGrad)" filter="url(#sh)"/><rect x="610.0" y="348.0" width="120.0" height="14.0" rx="7.0" fill="#FFFFFF" opacity="0.75"/><rect x="456.0" y="250.0" width="300.0" height="62.0" rx="16.0" fill="#FFFFFF" filter="url(#shs)"/><rect x="484.0" y="274.0" width="102.0" height="14.0" rx="7.0" fill="#E1E5EC" /><rect x="462.0" y="176.0" width="300.0" height="62.0" rx="16.0" fill="#FFFFFF" filter="url(#shs)"/><rect x="490.0" y="200.0" width="86.0" height="14.0" rx="7.0" fill="#E1E5EC" /><circle cx="300.0" cy="172.0" r="34.0" fill="#FFFFFF" filter="url(#shs)"/><path d="M 288 160 l 24 24 M 312 160 l -24 24" stroke="#A9B2C1" stroke-width="8" stroke-linecap="round"/></svg>

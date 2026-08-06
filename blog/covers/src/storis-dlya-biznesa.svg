@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="0.4" y2="1">
+    <stop offset="0" stop-color="#FBFCFD"/><stop offset="1" stop-color="#E9ECF2"/>
+  </linearGradient>
+  <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#2563EB" stop-opacity="0.10"/>
+    <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#4B82F7"/><stop offset="1" stop-color="#2563EB"/>
+  </linearGradient>
+  <linearGradient id="glass" x1="0" y1="0" x2="0.3" y2="1">
+    <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.95"/>
+    <stop offset="1" stop-color="#DDE3ED" stop-opacity="0.85"/>
+  </linearGradient>
+  <filter id="sh" x="-40%" y="-40%" width="180%" height="180%">
+    <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#141C2E" flood-opacity="0.11"/>
+  </filter>
+  <filter id="shs" x="-60%" y="-60%" width="220%" height="220%">
+    <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#141C2E" flood-opacity="0.10"/>
+  </filter>
+  <filter id="blur"><feGaussianBlur stdDeviation="18"/></filter>
+</defs><rect width="1200" height="630" fill="url(#bg)"/><circle cx="600" cy="322" r="420" fill="url(#glow)"/><ellipse cx="600.0" cy="522.0" rx="250.0" ry="40.0" fill="#8A93A6" opacity="0.13" filter="url(#blur)"/><circle cx="300.0" cy="412.0" r="62.0" fill="#FFFFFF" filter="url(#shs)"/><circle cx="300.0" cy="412.0" r="62.0" fill="none" stroke="#2563EB" stroke-width="7"/><circle cx="300.0" cy="412.0" r="46.0" fill="#C9DAFB" /><circle cx="450.0" cy="412.0" r="62.0" fill="#FFFFFF" filter="url(#shs)"/><circle cx="450.0" cy="412.0" r="62.0" fill="none" stroke="#E1E5EC" stroke-width="7"/><circle cx="450.0" cy="412.0" r="46.0" fill="#EFF1F5" /><circle cx="600.0" cy="412.0" r="62.0" fill="#FFFFFF" filter="url(#shs)"/><circle cx="600.0" cy="412.0" r="62.0" fill="none" stroke="#E1E5EC" stroke-width="7"/><circle cx="600.0" cy="412.0" r="46.0" fill="#EFF1F5" /><circle cx="750.0" cy="412.0" r="62.0" fill="#FFFFFF" filter="url(#shs)"/><circle cx="750.0" cy="412.0" r="62.0" fill="none" stroke="#E1E5EC" stroke-width="7"/><circle cx="750.0" cy="412.0" r="46.0" fill="#EFF1F5" /><circle cx="900.0" cy="412.0" r="62.0" fill="#FFFFFF" filter="url(#shs)"/><circle cx="900.0" cy="412.0" r="62.0" fill="none" stroke="#E1E5EC" stroke-width="7"/><circle cx="900.0" cy="412.0" r="46.0" fill="#EFF1F5" /><rect x="504.0" y="92.0" width="192.0" height="250.0" rx="24.0" fill="#FFFFFF" filter="url(#sh)"/><rect x="516.0" y="104.0" width="168.0" height="226.0" rx="16.0" fill="#E6EEFE" /><rect x="526.0" y="116.0" width="44.0" height="8.0" rx="4.0" fill="#2563EB" /><rect x="580.0" y="116.0" width="44.0" height="8.0" rx="4.0" fill="#E1E5EC" /><rect x="634.0" y="116.0" width="44.0" height="8.0" rx="4.0" fill="#E1E5EC" /><circle cx="600.0" cy="204.0" r="34.0" fill="#FFFFFF" /><path d="M 590 187 l 28 17 l -28 17 z" fill="#2563EB"/></svg>

@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+._*
+
+# Локальные настройки Claude Code
+.claude/settings.local.json
+
+# Временные файлы сборки страниц
+_shot.html
+_test.html
+_sheet.html
+_zoom.html
+_contact*.html
+_logo.html
+_t.html
+
+# Python
+__pycache__/
+*.pyc
