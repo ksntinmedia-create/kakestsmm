@@ -94,7 +94,7 @@ python3 blog/_covers.py fit     # привести файлы к 1200x630 JPEG
 
 Что уже сделано для поиска: уникальные `title` и `description`, канонические адреса,
 Open Graph, микроразметка Article и Blog, хлебные крошки, `sitemap.xml` и `robots.txt`
-с доменом `kakestsmm.com`. Если домен другой — поменяйте константу `SITE`
+с доменом `kakestsmm.ru`. Если домен другой — поменяйте константу `SITE`
 в `blog/_generate.py` и пересоберите.
 
 ## SEO

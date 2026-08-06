@@ -15,7 +15,7 @@ from _articles import ARTICLES  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "blog")
-SITE = "https://kakestsmm.com"
+SITE = "https://kakestsmm.ru"
 
 MONTHS = ["января", "февраля", "марта", "апреля", "мая", "июня",
           "июля", "августа", "сентября", "октября", "ноября", "декабря"]

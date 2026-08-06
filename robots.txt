@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kakestsmm.com/sitemap.xml
+Sitemap: https://kakestsmm.ru/sitemap.xml

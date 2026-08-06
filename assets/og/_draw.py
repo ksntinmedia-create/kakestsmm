@@ -19,7 +19,7 @@ CARDS = [
     ("og-blog", "Блог о продвижении<br>в соцсетях",
      "Разборы и инструкции из практики агентства", "20 статей · контент, реклама, аналитика"),
     ("og-legal", "Документы<br>и правовая информация",
-     "Обработка персональных данных и условия работы", "kakestsmm.com"),
+     "Обработка персональных данных и условия работы", "kakestsmm.ru"),
 ]
 
 TPL = """<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
@@ -58,7 +58,7 @@ h1 em{font-style:normal;color:#2563EB}
   <h1>%(title)s</h1>
   <p class="sub">%(sub)s</p>
 </div>
-<div class="foot"><span class="pill">kakestsmm.com</span><span class="meta">%(meta)s</span></div>
+<div class="foot"><span class="pill">kakestsmm.ru</span><span class="meta">%(meta)s</span></div>
 </body></html>"""
 
 
