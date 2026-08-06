@@ -63,6 +63,7 @@ def shell(title, desc, canonical, body, active="blog", jsonld="", og_type="websi
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>%(title)s</title>
 <meta name="description" content="%(desc)s">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="%(canonical)s">
 <meta property="og:type" content="%(og_type)s">
 <meta property="og:title" content="%(title)s">
@@ -71,7 +72,12 @@ def shell(title, desc, canonical, body, active="blog", jsonld="", og_type="websi
 <meta property="og:site_name" content="SMM-агентство «Как есть»">
 <meta property="og:locale" content="ru_RU">
 %(og_image)s
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="%(title)s">
+<meta name="twitter:description" content="%(desc)s">
+<meta name="theme-color" content="#2563EB">
 <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -209,7 +215,11 @@ def build_article(a):
         "rel": related(a),
     }
 
-    og_image = ('<meta property="og:image" content="%s/blog/%s">' % (SITE, cov)) if cov else ""
+    img = "%s/blog/%s" % (SITE, cov) if cov else "%s/assets/og/og-blog.jpg" % SITE
+    og_image = ('<meta property="og:image" content="%s">\n'
+                '<meta property="og:image:width" content="1200">\n'
+                '<meta property="og:image:height" content="630">\n'
+                '<meta name="twitter:image" content="%s">' % (img, img))
     page = shell(a["title"] + " | Как есть", a["description"], url, body,
                  jsonld=jsonld, og_type="article", og_image=og_image)
     with open(os.path.join(OUT, a["slug"] + ".html"), "w", encoding="utf-8") as f:
@@ -303,7 +313,12 @@ def build_index():
         "Блог о SMM и продвижении в соцсетях | Как есть",
         "Статьи о продвижении бизнеса в соцсетях: контент-план, таргет, Telegram, "
         "аналитика и нейросети. Практика SMM-агентства «Как есть».",
-        SITE + "/blog/", body, jsonld=jsonld)
+        SITE + "/blog/", body, jsonld=jsonld,
+        og_image=('<meta property="og:image" content="%s/assets/og/og-blog.jpg">\n'
+                  '<meta property="og:image:width" content="1200">\n'
+                  '<meta property="og:image:height" content="630">\n'
+                  '<meta name="twitter:image" content="%s/assets/og/og-blog.jpg">'
+                  % (SITE, SITE)))
     with open(os.path.join(OUT, "index.html"), "w", encoding="utf-8") as f:
         f.write(page)
 
