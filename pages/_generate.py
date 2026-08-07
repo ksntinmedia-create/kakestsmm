@@ -253,6 +253,24 @@ def build_page(p):
                       "provider": {"@id": SITE + "/#org"},
                       "areaServed": {"@type": "Country", "name": "Россия"},
                       "url": "%s/%s" % (SITE, p["slug"])})
+    if p["slug"] == "kontakty.html":
+        # Адрес и контакты машиночитаемо — Яндексу нужен геосигнал для региональности
+        graph.append({
+            "@type": "Organization", "@id": SITE + "/#org",
+            "name": "SMM-агентство «Как есть»", "url": SITE + "/",
+            "email": "nadyashteinbakh@gmail.com", "telephone": "+7-995-082-25-63",
+            "address": {"@type": "PostalAddress", "addressCountry": "RU",
+                        "addressRegion": "Республика Хакасия",
+                        "addressLocality": "Саяногорск",
+                        "streetAddress": "ул. Снежная, д. 5а"},
+            "areaServed": {"@type": "Country", "name": "Россия"},
+            "contactPoint": [
+                {"@type": "ContactPoint", "contactType": "sales",
+                 "telephone": "+7-995-082-25-63", "email": "nadyashteinbakh@gmail.com",
+                 "availableLanguage": "Russian", "areaServed": "RU"}],
+            "sameAs": ["https://t.me/kakestsmm", "https://vk.com/id59595974",
+                       "https://youtube.com/@kak_est_smm",
+                       "https://www.tiktok.com/@nadya_shteinbah"]})
     if p["slug"] == "otzyvy.html":
         graph.append({
             "@type": "Organization", "@id": SITE + "/#org",
