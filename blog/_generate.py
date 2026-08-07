@@ -334,10 +334,20 @@ def build_sitemap():
     for f in ["privacy-policy", "confidentiality", "consent", "terms", "cookies"]:
         urls.append(("%s/legal/%s.html" % (SITE, f), "0.2", "yearly"))
 
-    today = date.today().isoformat()
+    def lastmod(url):
+        """Дата берётся из времени правки файла: поисковику незачем сообщать,
+        что весь сайт изменился, когда пересобралась одна страница."""
+        rel = url[len(SITE) + 1:] or "index.html"
+        if rel.endswith("/"):
+            rel += "index.html"
+        path = os.path.join(ROOT, rel)
+        if os.path.exists(path):
+            return date.fromtimestamp(os.path.getmtime(path)).isoformat()
+        return date.today().isoformat()
+
     body = "\n".join(
         "  <url><loc>%s</loc><lastmod>%s</lastmod>"
-        "<changefreq>%s</changefreq><priority>%s</priority></url>" % (u, today, freq, pr)
+        "<changefreq>%s</changefreq><priority>%s</priority></url>" % (u, lastmod(u), freq, pr)
         for u, pr, freq in urls
     )
     xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
