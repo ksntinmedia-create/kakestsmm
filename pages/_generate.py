@@ -15,7 +15,7 @@ ROOT = os.path.dirname(HERE)
 SITE = "https://kakestsmm.ru"
 
 sys.path.insert(0, HERE)
-from _content import PAGES  # noqa: E402
+from _content import PAGES, REVIEWS  # noqa: E402
 
 TG = "https://t.me/nadya_shteinbah"
 
@@ -43,6 +43,7 @@ def nav(up, active=""):
              (up + "index.html#services", "Услуги", "uslugi"),
              (up + "ceny.html", "Цены", "ceny"),
              (up + "keysy.html", "Кейсы", "keysy"),
+             (up + "otzyvy.html", "Отзывы", "otzyvy"),
              (up + "blog/index.html", "Блог", "blog"),
              (up + "kontakty.html", "Контакты", "kontakty")]
     return "\n      ".join(
@@ -61,6 +62,7 @@ def footer(up):
       <a href="%(up)suslugi/sajty.html">Создание сайтов</a>
       <a href="%(up)sceny.html">Цены</a>
       <a href="%(up)skeysy.html">Кейсы</a>
+      <a href="%(up)sotzyvy.html">Отзывы</a>
       <a href="%(up)sblog/index.html">Блог</a>
       <a href="%(up)skontakty.html">Контакты</a>
     </nav>
@@ -192,6 +194,41 @@ def contacts_html():
 """ % (items, TG)
 
 
+
+AVATAR_COLORS = ["#4B82F7", "#F2A63B", "#57B36B", "#B968D6", "#E0679A", "#3FB6C4"]
+
+
+def stars():
+    return ('<span class="rv__stars" aria-label="Оценка 5 из 5">'
+            + '<svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">'
+              '<path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z" '
+              'fill="#F5A623"/></svg>' * 5 + '</span>')
+
+
+def reviews_html():
+    cards = []
+    for i, r in enumerate(REVIEWS):
+        paras = "".join("<p>%s</p>" % html.escape(t)
+                        for t in r["text"].split("\n\n") if t.strip())
+        reply = ""
+        if r.get("reply"):
+            reply = ('      <div class="rv__reply">'
+                     '<b>Надежда Штейнбах</b><span>%s</span><p>%s</p></div>'
+                     % (r["reply_date"], html.escape(r["reply"])))
+        cards.append("""      <article class="rv">
+        <header class="rv__head">
+          <span class="rv__ava" style="background:%s" aria-hidden="true">%s</span>
+          <span class="rv__who"><b>%s</b><time datetime="%s">%s</time></span>
+          %s
+        </header>
+        <div class="rv__text">%s</div>
+%s
+      </article>""" % (AVATAR_COLORS[i % len(AVATAR_COLORS)], r["name"][0],
+                       html.escape(r["name"]), r["date"], r["date_ru"],
+                       stars(), paras, reply))
+    return ('    <div class="rv__grid">\n' + "\n".join(cards) + "\n    </div>\n")
+
+
 def build_page(p):
     depth = p["slug"].count("/")
     up = "../" * depth
@@ -203,6 +240,8 @@ def build_page(p):
         blocks = cases_html(up)
     elif blocks == "__CONTACTS__":
         blocks = contacts_html()
+    elif blocks == "__REVIEWS__":
+        blocks = reviews_html()
 
     graph = [{"@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Главная", "item": SITE + "/"},
@@ -214,6 +253,19 @@ def build_page(p):
                       "provider": {"@id": SITE + "/#org"},
                       "areaServed": {"@type": "Country", "name": "Россия"},
                       "url": "%s/%s" % (SITE, p["slug"])})
+    if p["slug"] == "otzyvy.html":
+        graph.append({
+            "@type": "Organization", "@id": SITE + "/#org",
+            "name": "SMM-агентство «Как есть»", "url": SITE + "/",
+            "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5",
+                                "bestRating": "5", "reviewCount": len(REVIEWS)},
+            "review": [{"@type": "Review",
+                        "author": {"@type": "Person", "name": r["name"]},
+                        "datePublished": r["date"],
+                        "reviewRating": {"@type": "Rating", "ratingValue": "5",
+                                         "bestRating": "5"},
+                        "reviewBody": r["text"].replace("\n\n", " ")}
+                       for r in REVIEWS]})
     if p.get("faq"):
         graph.append({"@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": q,
