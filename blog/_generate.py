@@ -325,6 +325,10 @@ def build_index():
 
 def build_sitemap():
     urls = [(SITE + "/", "1.0", "weekly"), (SITE + "/blog/", "0.9", "weekly")]
+    for page, pr in [("uslugi/vedenie-socsetey.html", "0.9"), ("uslugi/reklama.html", "0.9"),
+                     ("uslugi/neuroseti.html", "0.8"), ("uslugi/sajty.html", "0.8"),
+                     ("keysy.html", "0.8"), ("kontakty.html", "0.6")]:
+        urls.append(("%s/%s" % (SITE, page), pr, "monthly"))
     for a in sorted(ARTICLES, key=lambda x: x["date"], reverse=True):
         urls.append(("%s/blog/%s.html" % (SITE, a["slug"]), "0.7", "monthly"))
     for f in ["privacy-policy", "confidentiality", "consent", "terms", "cookies"]:
