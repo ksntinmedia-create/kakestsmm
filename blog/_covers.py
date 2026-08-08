@@ -57,18 +57,35 @@ def cmd_check():
 
 
 def cmd_fit():
-    """Приводит всё, что лежит в covers/, к 1200x630 JPEG через sips."""
+    """Приводит файлы к 1200x630 JPEG: сначала кроп под пропорцию, потом размер.
+    Без кропа sips растянул бы картинку — модель отдаёт 16:9, а нужно 1.905:1."""
     n = 0
     for a in ARTICLES:
         src = existing(a["slug"])
         if not src:
             continue
         dst = os.path.join(COVERS, a["slug"] + ".jpg")
-        subprocess.run(
-            ["sips", "-s", "format", "jpeg", "-s", "formatOptions", "82",
-             "-z", str(H), str(W), src, "--out", dst],
-            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
-        if src != dst and os.path.exists(dst):
+        tmp = os.path.join(COVERS, "_tmp_" + a["slug"] + ".png")
+        subprocess.run(["cp", src, tmp], check=False)
+
+        out = subprocess.run(["sips", "-g", "pixelWidth", "-g", "pixelHeight", tmp],
+                             capture_output=True, text=True)
+        dims = [int(x.split(":")[1]) for x in out.stdout.strip().split("\n")[1:]]
+        if len(dims) == 2:
+            sw, sh = dims
+            target = W / float(H)
+            if sw / float(sh) > target:          # шире нужного — режем по бокам
+                cw, ch = int(sh * target), sh
+            else:                                # выше нужного — режем сверху и снизу
+                cw, ch = sw, int(sw / target)
+            subprocess.run(["sips", "-c", str(ch), str(cw), tmp],
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
+
+        subprocess.run(["sips", "-s", "format", "jpeg", "-s", "formatOptions", "82",
+                        "-z", str(H), str(W), tmp, "--out", dst],
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
+        os.remove(tmp)
+        if src != dst and os.path.exists(src):
             os.remove(src)
         n += 1
     print("обработано файлов: %d" % n)
@@ -95,7 +112,8 @@ def cmd_generate():
             continue
 
         payload = json.dumps({
-            "contents": [{"parts": [{"text": style + "\n\n" + prompt}]}]
+            "contents": [{"parts": [{"text": style + "\n\n" + prompt}]}],
+            "generationConfig": {"imageConfig": {"aspectRatio": "16:9"}}
         }).encode("utf-8")
         req = urllib.request.Request(
             API, data=payload,

@@ -28,7 +28,7 @@ python3 blog/_generate.py
 Style: clean minimal 3D illustration, soft studio lighting, light neutral background
 (#F2F3F5 to white gradient), one accent colour — vivid blue #2563EB, matte surfaces,
 soft long shadows, generous empty space, centred composition, professional and calm,
-no text, no letters, no numbers, no logos, no brand marks, no human faces.
+absolutely no text of any kind: no letters, no numbers, no hex colour codes, no labels, no UI captions, no logos, no brand marks, no human faces.
 Aspect ratio 1200x630, horizontal.
 ```
 
@@ -46,7 +46,7 @@ Aspect ratio 1200x630, horizontal.
 | 5 | `oformlenie-profilya.jpg` | A 3D profile card floating above a surface: round avatar placeholder, abstract bio lines, a blue action button, three small circular story highlights below |
 | 6 | `targeting-vk-s-nulya.jpg` | A 3D dartboard seen at an angle with one blue dart in the centre, small floating audience segments as translucent spheres around it |
 | 7 | `posevy-v-telegram.jpg` | A 3D paper plane flying upward leaving a soft blue trail, below it a row of small rounded channel cards |
-| 8 | `telegram-kanal-dlya-biznesa.jpg` | A 3D chat window floating in space with stacked message bubbles, one bubble highlighted blue, small subscriber dots rising around it |
+| 8 | `telegram-kanal-dlya-biznesa.jpg` | Three smooth rounded 3D speech bubbles stacked at slight angles, the front one vivid blue, a soft cloud of small blue dots rising above them. Pure abstract shapes only — no interface, no window frame, no buttons |
 | 9 | `yandex-direct-dlya-malogo-biznesa.jpg` | A 3D search bar floating in front of a stack of result cards, the top card lifted and marked with a blue tag |
 | 10 | `metriki-smm.jpg` | A minimal 3D dashboard: a rising bar chart, a circular gauge and a line graph, all in grey with one blue element |
 | 11 | `voronka-prodazh-v-socsetyah.jpg` | A translucent 3D funnel with small spheres entering wide at the top and a few blue spheres exiting at the narrow bottom |

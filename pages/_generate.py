@@ -229,6 +229,20 @@ def reviews_html():
     return ('    <div class="rv__grid">\n' + "\n".join(cards) + "\n    </div>\n")
 
 
+
+def hero_html(slug, up):
+    """Иллюстрация для страницы услуги: assets/img/uslugi/<имя>.jpg.
+    Файла нет — страница собирается без картинки."""
+    if not slug.startswith("uslugi/"):
+        return ""
+    name = os.path.splitext(os.path.basename(slug))[0]
+    rel = "assets/img/uslugi/%s.jpg" % name
+    if not os.path.exists(os.path.join(ROOT, rel)):
+        return ""
+    return ('  <figure class="lp__hero"><img src="%s%s" alt="" width="1200" height="630" '
+            'loading="lazy"></figure>\n' % (up, rel))
+
+
 def build_page(p):
     depth = p["slug"].count("/")
     up = "../" * depth
@@ -299,7 +313,7 @@ def build_page(p):
   </nav>
   <h1>%(h1)s</h1>
   <p class="lp__lead">%(lead)s</p>
-%(blocks)s
+%(hero)s%(blocks)s
 %(faq)s
   <section class="lp__cta">
     <h2>Разберём вашу задачу бесплатно</h2>
@@ -308,6 +322,7 @@ def build_page(p):
   </section>
 </main>
 """ % {"up": up, "h1": p["h1"], "lead": p["lead"], "blocks": blocks,
+       "hero": hero_html(p["slug"], up),
        "faq": faq_html(p.get("faq")), "tg": TG}
 
     out = os.path.join(ROOT, p["slug"])
