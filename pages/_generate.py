@@ -268,15 +268,14 @@ def build_page(p):
                       "areaServed": {"@type": "Country", "name": "Россия"},
                       "url": "%s/%s" % (SITE, p["slug"])})
     if p["slug"] == "kontakty.html":
-        # Адрес и контакты машиночитаемо — Яндексу нужен геосигнал для региональности
+        # Контакты машиночитаемо, без привязки к городу
         graph.append({
             "@type": "Organization", "@id": SITE + "/#org",
             "name": "SMM-агентство «Как есть»", "url": SITE + "/",
             "email": "nadyashteinbakh@gmail.com", "telephone": "+7-995-082-25-63",
-            "address": {"@type": "PostalAddress", "addressCountry": "RU",
-                        "addressRegion": "Республика Хакасия",
-                        "addressLocality": "Саяногорск",
-                        "streetAddress": "ул. Снежная, д. 5а"},
+            # Города в разметке нет намеренно: регион сайта — вся Россия.
+            # Адрес остаётся видимым текстом в реквизитах, как требует закон,
+            # но машиночитаемый PostalAddress тянул бы регион к Хакасии.
             "areaServed": {"@type": "Country", "name": "Россия"},
             "contactPoint": [
                 {"@type": "ContactPoint", "contactType": "sales",
