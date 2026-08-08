@@ -120,8 +120,10 @@
      Попап «Бесплатный разбор»
      ======================================================================== */
 
-  // Куда отправлять заявки. Пока пусто — форма только показывает «спасибо»,
-  // данные никуда не уходят. Подставьте URL приёмника (см. README).
+  // Приёмник заявок: воркер, который пересылает их в Telegram.
+  // Токен бота живёт на его стороне и в код страницы не попадает —
+  // иначе любой посетитель прочитал бы все заявки через getUpdates.
+  // Разворачивается из deploy/telegram-worker.js, см. deploy/README.md.
   var LEAD_ENDPOINT = '';
 
   var DELAY = 10000;          // через сколько показать, мс
@@ -134,6 +136,7 @@
   var form = document.getElementById('leadForm');
   var body = document.getElementById('leadBody');
   var done = document.getElementById('leadDone');
+  var fail = document.getElementById('leadFail');
   var submitBtn = form.querySelector('.lead__submit');
   var lastFocused = null;
   var timer = null;
@@ -183,6 +186,13 @@
     if (e.key === 'Escape' && !modal.hidden) close(true);
   });
 
+  var retry = document.getElementById('leadRetry');
+  if (retry) retry.addEventListener('click', function (e) {
+    e.preventDefault();
+    fail.hidden = true;
+    body.hidden = false;
+  });
+
   // фокус не убегает из открытого попапа
   modal.addEventListener('keydown', function (e) {
     if (e.key !== 'Tab') return;
@@ -226,11 +236,15 @@
 
   /* ---------- Отправка ---------- */
   function send(data) {
-    if (!LEAD_ENDPOINT) return Promise.resolve();   // приёмник не подключён
+    // Приёмника нет — отправить некуда, честно уходим в ошибку
+    if (!LEAD_ENDPOINT) return Promise.reject(new Error('endpoint not set'));
     return fetch(LEAD_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
+    }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r;
     });
   }
 
@@ -241,6 +255,7 @@
       phone: form.phone.value.trim(),
       messenger: form.messenger.value,
       consent: { pdn: form.agree.checked, terms: form.terms.checked },
+      website: form.website.value,        // ловушка для ботов, человек её не видит
       page: location.href,
       at: new Date().toISOString()
     };
@@ -249,12 +264,19 @@
     submitBtn.disabled = true;
     submitBtn.textContent = 'Отправляем…';
 
-    send(data)['catch'](function () {})['then'](function () {
-      var s = readState();
-      s.sent = true;
-      writeState(s);
+    send(data).then(function () {
+      var st = readState();
+      st.sent = true;
+      writeState(st);
       body.hidden = true;
+      fail.hidden = true;
       done.hidden = false;
+    })['catch'](function () {
+      // Заявка не ушла — показываем это, а не ложное «принято»
+      body.hidden = true;
+      done.hidden = true;
+      fail.hidden = false;
+    })['then'](function () {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Получить разбор';
     });

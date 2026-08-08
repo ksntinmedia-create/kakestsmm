@@ -7,5 +7,6 @@
 exclude:
   - README.md
   - pages
+  - deploy
   - blog/covers/PROMPTS.md
   - .gitignore

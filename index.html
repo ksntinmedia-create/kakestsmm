@@ -545,6 +545,10 @@
           <label><input type="radio" name="messenger" value="Звонок"><span>Позвонить</span></label>
         </fieldset>
 
+        <div class="lead__trap" aria-hidden="true">
+          <label>Не заполняйте это поле<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+
         <label class="lead__agree">
           <input type="checkbox" name="agree" required>
           <span>Даю <a href="legal/consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> в соответствии с <a href="legal/privacy-policy.html" target="_blank" rel="noopener">Политикой</a></span>
@@ -560,6 +564,13 @@
         <button class="btn btn--lg lead__submit" type="submit">Получить разбор</button>
         <p class="lead__note">Отвечаем в течение рабочего дня. Без спама и звонков без предупреждения.</p>
       </form>
+    </div>
+
+    <div class="modal__fail" id="leadFail" hidden>
+      <h2>Не удалось отправить</h2>
+      <p>Что-то пошло не так на нашей стороне. Напишите напрямую — ответим так же быстро.</p>
+      <a class="btn btn--lg" href="https://t.me/nadya_shteinbah" target="_blank" rel="noopener">написать в Telegram</a>
+      <a class="modal__retry" href="#" id="leadRetry">попробовать ещё раз</a>
     </div>
 
     <div class="modal__done" id="leadDone" hidden>
